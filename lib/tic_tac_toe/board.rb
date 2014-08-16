@@ -2,7 +2,7 @@ module TicTacToe
   class Board
     attr_accessor :board
     def initialize
-      @board = Array.new(3) {Array.new(3) {Cell.new}}
+      @board = Array.new(9) {Cell.new}
     end
 
     def display
@@ -11,42 +11,24 @@ module TicTacToe
 
     def to_s
       s = "+- - - - - -+\n"
-      for row in 0..2
-        s << "| "
-        for column in 0..2
-          cell = board[row][column]
-          s << "#{cell} | "
-        end
-        s << "\n+- - - - - -+\n"
-      end
-      s
+      s << "| #{board[0]} | #{board[1]} | #{board[2]} |"
+      s << "\n+- - - - - -+\n"
+      s << "| #{board[3]} | #{board[4]} | #{board[5]} |"
+      s << "\n+- - - - - -+\n"
+      s << "| #{board[6]} | #{board[7]} | #{board[8]} |"
+      s << "\n+- - - - - -+\n"
     end
 
     def get_cell(cell_number)
-      cell_number = cell_number - 1
-      row = cell_number / 3
-      column = cell_number % 3
-      board[row][column]
+      board[cell_number-1]
     end
 
     def dup
       new_board = Board.new
-      for i in 1..9
-        new_board.set_cell(i, get_cell_value(i))
+      board.each_with_index do |cell, index|
+        new_board.set_cell(index + 1, cell.value)
       end
       new_board
-    end
-
-    def get_cell_value(cell_number)
-      get_cell(cell_number).value
-    end
-
-    def all_empty?
-      for i in 1 .. 9
-        if !empty_cell?(i)
-          return false
-        end
-      end
     end
 
     def set_cell(cell_number, player_mark)
@@ -57,18 +39,12 @@ module TicTacToe
       get_cell(cell_number).empty?
     end
 
-    def cell_num_array
-      [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    end
-
     def empty_cells
-      empty_cells = []
-      cell_num_array.each do |cell_number|
-        if empty_cell?(cell_number)
-          empty_cells << cell_number
-        end
+      available_cells = []
+      board.each_with_index do |cell, index|
+        available_cells << (index + 1) if cell.empty?
       end
-      empty_cells
+      available_cells
     end
 
     def winning_solutions_rows
@@ -109,16 +85,15 @@ module TicTacToe
     end
 
     def tie_game?
-      board_full?
+      full? && !winner?
     end
 
-    def board_full?
-      for i in 1 .. 9
-        if get_cell(i).empty?
-          return false
-        end
-      end
-      true
+    def empty?
+      board.all? {|cell| cell.empty?}
+    end
+
+    def full?
+      board.none? {|cell| cell.empty?}
     end
 
     def over?

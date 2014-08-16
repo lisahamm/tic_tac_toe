@@ -2,7 +2,7 @@ module TicTacToe
   class ComputerPlayer < Player
     def comp_take_turn(board)
       cell =
-        if board.all_empty?
+        if board.empty?
           (1..9).to_a.sample
         else
           minimax(board, mark)

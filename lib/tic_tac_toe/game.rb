@@ -27,16 +27,6 @@ module TicTacToe
       cell_number > 0 && cell_number < 10
     end
 
-    def get_empty_cells
-      empty_cells = []
-      for cell_number in 1..9
-        if board.empty_cell?(cell_number)
-          empty_cells.push cell_number
-        end
-      end
-      empty_cells
-    end
-
     def display_error_message(cell_number)
       if !correct_range?(cell_number)
         puts "The cell number you entered is not valid."
