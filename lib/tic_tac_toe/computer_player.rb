@@ -1,6 +1,6 @@
 module TicTacToe
   class ComputerPlayer < Player
-    def comp_take_turn(board)
+    def take_turn(board)
       cell =
         if board.empty?
           (1..9).to_a.sample
@@ -9,6 +9,8 @@ module TicTacToe
         end
       board.set_cell(cell, mark)
     end
+
+    private
 
     def opponent(player)
       player == 'X' ? 'O' : 'X'

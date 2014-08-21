@@ -1,17 +1,24 @@
 module TicTacToe
   class Game
-    attr_accessor :board, :players, :current_player, :turn_counter
 
     def initialize(board, player1, player2)
       @board = board
       @players = [player1, player2]
-      @turn_counter = 0
-      @current_player = get_current_player
+      @current_player = player1
     end
 
-    def get_current_player
-      players[turn_counter % 2]
+    def play
+      while in_progress?
+        take_turn
+        switch_turn
+        board.display
+      end
+      end_game
     end
+
+    private
+
+    attr_accessor :board, :players, :current_player
 
     def get_player_move
         puts "#{current_player}, it's your turn. What cell would you like to mark (1-9)?"
@@ -35,19 +42,10 @@ module TicTacToe
       end
     end
 
-    def play
-      while in_progress?
-        take_turn
-        switch_turn
-        board.display
-      end
-      end_game
-    end
-
     def take_turn
       player_mark = current_player.mark
       if player_mark == 'O'
-        current_player.comp_take_turn(board)
+        current_player.take_turn(board)
       else
         cell_number = get_player_move
         if valid_move?(cell_number)
@@ -114,9 +112,7 @@ module TicTacToe
     end
 
     def switch_turn
-      self.turn_counter += 1
-      self.current_player = get_current_player
+      self.current_player = current_player == players[0] ? players[1] : players[0]
     end
-
   end
 end
