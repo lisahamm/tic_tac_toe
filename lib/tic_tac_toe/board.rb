@@ -21,9 +21,7 @@ module TicTacToe
 
     def dup
       new_board = Board.new
-      board.each_with_index do |cell, index|
-        new_board.set_cell(index + 1, cell.value)
-      end
+      board.each_with_index {|cell, index| new_board.set_cell(index + 1, cell.value)}
       new_board
     end
 
@@ -41,9 +39,7 @@ module TicTacToe
 
     def empty_cells
       available_cells = []
-      board.each_with_index do |cell, index|
-        available_cells << (index + 1) if cell.empty?
-      end
+      board.each_with_index {|cell, index| available_cells << (index + 1) if cell.empty?}
       available_cells
     end
 

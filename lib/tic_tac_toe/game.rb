@@ -14,6 +14,7 @@ module TicTacToe
         board.display
       end
       end_game
+      play_again?
     end
 
     private
@@ -22,8 +23,7 @@ module TicTacToe
 
     def get_player_move
         puts "#{current_player}, it's your turn. What cell would you like to mark (1-9)?"
-        cell_number = gets.chomp
-        cell_number = cell_number.to_i
+        gets.chomp.to_i
     end
 
     def valid_move?(cell_number)
@@ -57,22 +57,8 @@ module TicTacToe
       end
     end
 
-    def get_new_state(board, cell_number, player)
-      new_board = board.dup
-      new_board.set_cell(cell_number, player)
-    end
-
-
     def in_progress?
-      if winner?
-        winning_player = get_winning_player
-        display_winning_message(winning_player)
-        return false
-      elsif tie?
-        display_tie_message
-        return false
-      end
-      true
+      !winner? && !tie?
     end
 
     def winner?
@@ -80,12 +66,7 @@ module TicTacToe
     end
 
     def get_winning_player
-      winning_mark = board.get_winning_mark
-      if winning_mark == players[0].mark
-        players[0]
-      else
-        players[1]
-      end
+      board.get_winning_mark == players[0].mark ? players[0] : players[1]
     end
 
     def tie?
@@ -93,12 +74,19 @@ module TicTacToe
     end
 
     def end_game
+      if winner?
+        display_winning_message(get_winning_player)
+      elsif tie?
+        display_tie_message
+      end
+    end
+
+    def play_again?
       puts "Would you like to play again? Enter 1 to play again or enter 2 to quit game"
       option = gets.chomp
       if option == 1
-        game = Game.new
-        game.play
-      elsif option == 2
+        Game.new(Board.new, Player.new('X'), ComputerPlayer.new('O')).play
+      else
         exit
       end
     end
