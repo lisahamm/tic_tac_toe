@@ -21,40 +21,8 @@ module TicTacToe
 
     attr_accessor :board, :players, :current_player
 
-    def get_player_move
-        puts "#{current_player}, it's your turn. What cell would you like to mark (1-9)?"
-        gets.chomp.to_i
-    end
-
-    def valid_move?(cell_number)
-      correct_range?(cell_number) && board.empty_cell?(cell_number)
-    end
-
-    def correct_range?(cell_number)
-      cell_number > 0 && cell_number < 10
-    end
-
-    def display_error_message(cell_number)
-      if !correct_range?(cell_number)
-        puts "The cell number you entered is not valid."
-      else
-        puts "That cell has already been marked. Please select an unmarked cell."
-      end
-    end
-
     def take_turn
-      player_mark = current_player.mark
-      if player_mark == 'O'
-        current_player.take_turn(board)
-      else
-        cell_number = get_player_move
-        if valid_move?(cell_number)
-          board.set_cell(cell_number, player_mark)
-        else
-          display_error_message(cell_number)
-          take_turn
-        end
-      end
+      current_player.take_turn(board)
     end
 
     def in_progress?
