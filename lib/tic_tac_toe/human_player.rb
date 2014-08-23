@@ -12,10 +12,6 @@ module TicTacToe
 
     def get_valid_move(board)
       move = get_move
-      validate_move(move, board)
-    end
-
-    def validate_move(move, board)
       if valid_move?(move, board)
         move
       else

@@ -17,14 +17,6 @@ module TicTacToe
       play_again?
     end
 
-    private
-
-    attr_accessor :board, :players, :current_player
-
-    def take_turn
-      current_player.take_turn(board)
-    end
-
     def in_progress?
       !winner? && !tie?
     end
@@ -39,6 +31,14 @@ module TicTacToe
 
     def tie?
       board.tie_game?
+    end
+
+    private
+
+    attr_accessor :board, :players, :current_player
+
+    def take_turn
+      current_player.take_turn(board)
     end
 
     def end_game
