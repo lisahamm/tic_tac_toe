@@ -44,12 +44,12 @@ module TicTacToe
     end
 
     def get_winning_mark
-      for i in 0 .. winning_solutions.length - 1
-        cell1 = get_cell(winning_solutions[i][0])
-        cell2 = get_cell(winning_solutions[i][1])
-        cell3 = get_cell(winning_solutions[i][2])
-        if cell1.value == cell2.value && cell2.value == cell3.value && cell1.empty? == false
-          return "#{cell1}"
+      winning_solutions.each do |solution|
+        cell1 = get_cell(solution[0]).value
+        cell2 = get_cell(solution[1]).value
+        cell3 = get_cell(solution[2]).value
+        if cell1 == cell2 && cell1 == cell3 && cell1 != nil
+          return cell1
         end
       end
       nil

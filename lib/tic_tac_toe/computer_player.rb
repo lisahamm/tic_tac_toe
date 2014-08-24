@@ -8,6 +8,7 @@ module TicTacToe
           minimax(board, mark)
         end
       board.set_cell(cell, mark)
+      board.display
     end
 
     private
@@ -18,11 +19,11 @@ module TicTacToe
 
     def score(board, depth)
       if board.get_winning_mark == mark
-        return 10 - depth
+        10 - depth
       elsif board.get_winning_mark == opponent(mark)
-        return depth - 10
+        depth - 10
       else
-        return 0
+        0
       end
     end
 

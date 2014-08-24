@@ -11,10 +11,8 @@ module TicTacToe
       while in_progress?
         take_turn
         switch_turn
-        board.display
       end
       end_game
-      play_again?
     end
 
     def in_progress?
@@ -26,7 +24,13 @@ module TicTacToe
     end
 
     def get_winning_player
-      board.get_winning_mark == players[0].mark ? players[0] : players[1]
+      if board.get_winning_mark == players[0].mark
+        players[0]
+      elsif board.get_winning_mark == players[1].mark
+        players[1]
+      else
+        nil
+      end
     end
 
     def tie?
@@ -46,16 +50,6 @@ module TicTacToe
         display_winning_message(get_winning_player)
       elsif tie?
         display_tie_message
-      end
-    end
-
-    def play_again?
-      puts "Would you like to play again? Enter 1 to play again or enter 2 to quit game"
-      option = gets.chomp
-      if option == 1
-        Game.new(Board.new, Player.new('X'), ComputerPlayer.new('O')).play
-      else
-        exit
       end
     end
 

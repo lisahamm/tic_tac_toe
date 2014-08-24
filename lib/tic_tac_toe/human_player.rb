@@ -2,9 +2,12 @@ module TicTacToe
   class HumanPlayer < Player
 
     def take_turn(board)
+      board.display
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end
+
+    private
 
     def make_move(board, cell_number)
       board.set_cell(cell_number, mark)
@@ -22,7 +25,11 @@ module TicTacToe
 
     def get_move
       puts "#{self}, it's your turn. What cell would you like to mark (1-9)?"
-      gets.chomp.to_i
+      get_user_input.chomp.to_i
+    end
+
+    def get_user_input
+      gets
     end
 
     def valid_move?(cell_number, board)
