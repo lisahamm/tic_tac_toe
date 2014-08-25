@@ -18,6 +18,12 @@ module TicTacToe
       Board.new(cells)
     end
 
+    describe "#to_s" do
+      it "creates string representation of board in 3x3 cell format" do
+        expect(board.to_s).to eq "\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n"
+      end
+    end
+
     describe "cell accessors" do
       it "can set and get a cell value" do
         board.set_cell(1, 'X')

@@ -15,6 +15,10 @@ module TicTacToe
       end_game
     end
 
+    def to_s
+      board.to_s
+    end
+
     def in_progress?
       !winner? && !tie?
     end

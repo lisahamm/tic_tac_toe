@@ -72,4 +72,6 @@ game = Game.new(Board.new, player1, player2)
 
 game.play
 
+puts game
+
 

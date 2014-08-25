@@ -5,12 +5,8 @@ module TicTacToe
       @board = cells || Array.new(9) {Cell.new}
     end
 
-    def display
-      puts to_s
-    end
-
     def to_s
-      s = "+- - - - - -+\n"
+      s = "\n+- - - - - -+\n"
       s << "| #{board[0]} | #{board[1]} | #{board[2]} |"
       s << "\n+- - - - - -+\n"
       s << "| #{board[3]} | #{board[4]} | #{board[5]} |"

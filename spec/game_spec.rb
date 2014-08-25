@@ -5,6 +5,8 @@ module TicTacToe
     let(:player1) {Player.new('X')}
     let(:player2) {Player.new('O')}
 
+    let(:game) {Game.new(Board.new, player1, player2)}
+
     let(:game_in_play) do
       cells = [Cell.new('O'), Cell.new('O'), Cell.new,
                Cell.new, Cell.new('X'), Cell.new,
@@ -27,6 +29,12 @@ module TicTacToe
                Cell.new('X'), Cell.new('O'), Cell.new('X')]
       board = Board.new(cells)
       Game.new(board, player1, player2)
+    end
+
+    describe "#to_s" do
+      it "returns board string object" do
+        expect(game.to_s).to eq "\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n"
+      end
     end
 
     describe "#in_progress?" do
