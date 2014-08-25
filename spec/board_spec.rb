@@ -4,6 +4,20 @@ module TicTacToe
   describe Board do
     let(:board) {Board.new}
 
+    let(:won_board) do
+      cells = [Cell.new('X'), Cell.new('X'), Cell.new('O'),
+               Cell.new('O'), Cell.new('X'), Cell.new('X'),
+               Cell.new('X'), Cell.new('O'), Cell.new('X')]
+      Board.new(cells)
+    end
+
+    let(:tie_board) do
+      cells = [Cell.new('X'), Cell.new('X'), Cell.new('O'),
+               Cell.new('O'), Cell.new('O'), Cell.new('X'),
+               Cell.new('X'), Cell.new('O'), Cell.new('X')]
+      Board.new(cells)
+    end
+
     describe "cell accessors" do
       it "can set and get a cell value" do
         board.set_cell(1, 'X')
@@ -23,8 +37,17 @@ module TicTacToe
     end
 
     describe "#empty_cell?" do
-      it "can identify an empty cell" do
-        expect(board.empty_cell?(1)).to eq true
+      context "when cell is empty" do
+        it "is true" do
+          expect(board.empty_cell?(1)).to eq true
+        end
+      end
+
+      context "when cell is full" do
+        it "is false" do
+          board.set_cell(1, 'X')
+          expect(board.empty_cell?(1)).to eq false
+        end
       end
     end
 
@@ -53,24 +76,51 @@ module TicTacToe
     end
 
     describe "#empty?" do
-      it "can determine if the entire board is empty" do
-        expect(board.empty?).to eq true
+      context "when entire board is empty" do
+        it "is true" do
+          expect(board.empty?).to eq true
+        end
+      end
+
+      context "when board contains a mark" do
+        it "is false" do
+          board.set_cell(1, 'X')
+          expect(board.empty?).to eq false
+        end
       end
     end
 
     describe "#tie_game?" do
-      it "can determine if the board contains a tie game" do
-        board = Board.new([Cell.new('X'), Cell.new('X'), Cell.new('O'), Cell.new('O'),
-          Cell.new('O'), Cell.new('X'), Cell.new('X'), Cell.new('O'), Cell.new('X')])
-        expect(board.tie_game?).to eq true
+      context "when board is full without winner" do
+        it "is true" do
+          expect(tie_board.tie_game?).to eq true
+        end
+      end
+
+      context "when same mark appears in 3 consecutive cells" do
+        it "is false" do
+          expect(won_board.tie_game?).to eq false
+        end
       end
     end
 
     describe "#over?" do
-      it "can determine if the game is over" do
-        board = Board.new([Cell.new('X'), Cell.new('X'), Cell.new('O'), Cell.new('O'),
-          Cell.new('O'), Cell.new('X'), Cell.new('X'), Cell.new('O'), Cell.new('X')])
-        expect(board.over?).to eq true
+      context "when board is full without winner" do
+        it "is true" do
+          expect(tie_board.over?).to eq true
+        end
+      end
+
+      context "when same mark appears in 3 consecutive cells" do
+        it "is true" do
+          expect(won_board.over?). to eq true
+        end
+      end
+
+      context "when board is empty" do
+        it "is false" do
+          expect(board.over?).to eq false
+        end
       end
     end
   end

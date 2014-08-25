@@ -8,7 +8,6 @@ module TicTacToe
           minimax(board, mark)
         end
       board.set_cell(cell, mark)
-      board.display
     end
 
     private

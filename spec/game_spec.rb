@@ -76,6 +76,12 @@ module TicTacToe
           expect(tie_game.get_winning_player).to eq nil
         end
       end
+
+      context "when in play" do
+        it "is nil" do
+          expect(game_in_play.get_winning_player).to eq nil
+        end
+      end
     end
 
     describe "#tie?" do
