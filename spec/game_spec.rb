@@ -36,9 +36,14 @@ module TicTacToe
         end
       end
 
-      context "when over" do
+      context "when won" do
         it "is false" do
           expect(won_game.in_progress?).to eq false
+        end
+      end
+
+      context "when tied" do
+        it "is false" do
           expect(tie_game.in_progress?).to eq false
         end
       end
@@ -51,13 +56,13 @@ module TicTacToe
         end
       end
 
-      context "when player places three marks in a row" do
+      context "when won" do
         it "is true" do
           expect(won_game.winner?).to eq true
         end
       end
 
-      context "when tie game" do
+      context "when tied" do
         it "is false" do
           expect(tie_game.winner?).to eq false
         end
@@ -85,19 +90,19 @@ module TicTacToe
     end
 
     describe "#tie?" do
-      context "when game is in play" do
+      context "when in play" do
         it "is false" do
           expect(game_in_play.tie?).to eq false
         end
       end
 
-      context "when game ends in a tie" do
+      context "when tied" do
         it "is true" do
           expect(tie_game.tie?).to eq true
         end
       end
 
-      context "when game ends with a winner" do
+      context "when won" do
         it "is false" do
           expect(won_game.tie?).to eq false
         end
