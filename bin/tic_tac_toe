@@ -1,0 +1,75 @@
+#!/usr/bin/env ruby
+
+require File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib', 'tic_tac_toe')
+
+include TicTacToe
+
+def mark_input_message
+  puts "Pick your mark: Enter X or O: "
+end
+
+def user_mark_input
+  gets.chomp.capitalize
+end
+
+def valid_mark?(mark)
+  mark == "X" || mark == "O"
+end
+
+def get_valid_mark
+  mark_input_message
+  mark = user_mark_input
+  if valid_mark?(mark)
+    mark
+  else
+    puts "That is an invalid mark. Please try again."
+    get_valid_mark
+  end
+end
+
+def player_order_message
+  puts "Do you want to go first or second? Enter 1 or 2: "
+end
+
+def user_order_input
+  gets.chomp
+end
+
+def valid_number?(order_number)
+  order_number == "1" || order_number == "2"
+end
+
+def get_valid_number
+  player_order_message
+  order_number = user_order_input
+  if valid_number?(order_number)
+    order_number
+  else
+    puts "That is an invalid number. Please try again."
+    get_valid_number
+  end
+end
+
+
+mark = get_valid_mark
+
+other_mark = mark == 'X' ? 'O' : 'X'
+
+order_number = get_valid_number
+
+player1 = nil
+player2 = nil
+
+if order_number == "1"
+  player1 = HumanPlayer.new(mark)
+  player2 = ComputerPlayer.new(other_mark)
+elsif order_number == "2"
+  player1 = ComputerPlayer.new(other_mark)
+  player2 = HumanPlayer.new(mark)
+end
+
+game = Game.new(Board.new, player1, player2)
+
+game.play
+
+

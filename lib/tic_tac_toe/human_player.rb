@@ -19,7 +19,7 @@ module TicTacToe
         move
       else
         display_error_message(move)
-        get_valid_move
+        get_valid_move(board)
       end
     end
 
