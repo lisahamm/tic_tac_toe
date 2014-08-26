@@ -1,6 +1,6 @@
 # TicTacToe
 
-TODO: Write a gem description
+Ruby Tic Tac Toe
 
 ## Installation
 
@@ -16,14 +16,24 @@ Or install it yourself as:
 
     $ gem install tic_tac_toe
 
+To run game:
+
+$ cd tic_tac_toe
+
+$ ./bin/tic_tac_toe
+
 ## Usage
 
-TODO: Write usage instructions here
+The game is setup for a human player and an unbeatable computer player.
+The human player can pick its mark ('X' or 'O') and its turn order (first or second).
+Human player must enter a number 1-9 to mark the corresponding cell:
 
-## Contributing
++- - - - - -+
+| 1 | 2 | 3 |
++- - - - - -+
+| 4 | 5 | 6 |
++- - - - - -+
+| 7 | 8 | 9 |
++- - - - - -+
 
-1. Fork it ( https://github.com/[my-github-username]/tic_tac_toe/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+
