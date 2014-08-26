@@ -4,23 +4,22 @@ Ruby Tic Tac Toe
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Clone the git repository
 
-    gem 'tic_tac_toe'
+    $ git clone https://github.com/lisahamm/tic_tac_toe.git
 
-And then execute:
+Then `cd` into the directory
 
-    $ bundle
+    $ cd tic_tac_toe
 
-Or install it yourself as:
+Install dependencies
 
-    $ gem install tic_tac_toe
+    $ bundle install
 
-To run game:
+Run game!
 
-$ cd tic_tac_toe
+    $ ./bin/tic_tac_toe
 
-$ ./bin/tic_tac_toe
 
 ## Usage
 
