@@ -1,5 +1,6 @@
 module TicTacToe
   class Board
+    attr_accessor :cells
 
     def initialize(cells = nil)
       @board = cells || Array.new(9) {Cell.new}
