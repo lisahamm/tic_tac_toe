@@ -7,17 +7,19 @@ module TicTacToe
     describe "#take_turn" do
       context "when able to win" do
         it "makes the winning move" do
-          board = Board.new([Cell.new('O'), Cell.new('O'), Cell.new, Cell.new('X'), Cell.new('X'), Cell.new, Cell.new, Cell.new, Cell.new])
+          cells = ['O', 'O', nil, 'X', 'X', nil, nil, nil, nil]
+          board = Board.new(3, cells)
           computer_player.take_turn(board)
-          expect(board.get_cell(3).value).to eq 'O'
+          expect(board.get_cell(3)).to eq 'O'
         end
       end
 
       context "when opponent is able to win" do
         it "blocks the winning move" do
-          board = Board.new([Cell.new('X'), Cell.new('X'), Cell.new, Cell.new, Cell.new('O'), Cell.new, Cell.new, Cell.new, Cell.new])
+          cells = ['X', 'X', nil, nil, 'O', nil, nil, nil, nil]
+          board = Board.new(3, cells)
           computer_player.take_turn(board)
-          expect(board.get_cell(3).value).to eq 'O'
+          expect(board.get_cell(3)).to eq 'O'
         end
       end
     end

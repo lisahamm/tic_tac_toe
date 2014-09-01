@@ -8,7 +8,7 @@ module TicTacToe
       cells = ['X', 'X', 'O',
                'O', 'X', 'X',
                'X', 'O', 'X']
-      board = Board.new(3, cells)
+      Board.new(3, cells)
     end
 
     let(:tie_board) do

@@ -64,7 +64,7 @@ module TicTacToe
     end
 
     def empty?
-      cells.all? {|cell| empty_cell?(cell)}
+      cells.all? {|cell| cell == nil}
     end
 
     def over?
@@ -83,7 +83,7 @@ module TicTacToe
     end
 
     def full?
-      cells.none? {|cell| empty_cell?}
+      cells.none? {|cell| cell == nil}
     end
   end
 end
