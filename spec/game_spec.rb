@@ -8,33 +8,27 @@ module TicTacToe
     let(:game) {Game.new(Board.new, player1, player2)}
 
     let(:game_in_play) do
-      cells = [Cell.new('O'), Cell.new('O'), Cell.new,
-               Cell.new, Cell.new('X'), Cell.new,
-               Cell.new, Cell.new, Cell.new]
-      board = Board.new(cells)
+      cells = ['O', 'O', nil,
+               nil, 'X', nil,
+               nil, nil, nil]
+      board = Board.new(3, cells)
       Game.new(board, player1, player2)
     end
 
     let(:won_game) do
-      cells = [Cell.new('X'), Cell.new('X'), Cell.new('O'),
-               Cell.new('O'), Cell.new('X'), Cell.new('X'),
-               Cell.new('X'), Cell.new('O'), Cell.new('X')]
-      board = Board.new(cells)
+      cells = ['X', 'X', 'O',
+               'O', 'X', 'X',
+               'X', 'O', 'X']
+      board = Board.new(3, cells)
       Game.new(board, player1, player2)
     end
 
     let(:tie_game) do
-      cells = [Cell.new('X'), Cell.new('X'), Cell.new('O'),
-               Cell.new('O'), Cell.new('O'), Cell.new('X'),
-               Cell.new('X'), Cell.new('O'), Cell.new('X')]
-      board = Board.new(cells)
+      cells = ['X', 'X', 'O',
+               'O', 'O', 'X',
+               'X', 'O', 'X']
+      board = Board.new(3, cells)
       Game.new(board, player1, player2)
-    end
-
-    describe "#to_s" do
-      it "returns board string object" do
-        expect(game.to_s).to eq "\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n|   |   |   |\n+- - - - - -+\n"
-      end
     end
 
     describe "#in_progress?" do
