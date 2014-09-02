@@ -37,6 +37,10 @@ module TicTacToe
       board.tie_game?
     end
 
+    def to_s
+      board.to_s
+    end
+
     private
 
     attr_accessor :board, :players, :current_player

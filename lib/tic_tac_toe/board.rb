@@ -9,15 +9,15 @@ module TicTacToe
       @cells = cells || Array.new(size*size) {nil}
     end
 
-    # def to_s
-    #   s = "\n+- - - - - -+\n"
-    #   s << "| #{board[0]} | #{board[1]} | #{board[2]} |"
-    #   s << "\n+- - - - - -+\n"
-    #   s << "| #{board[3]} | #{board[4]} | #{board[5]} |"
-    #   s << "\n+- - - - - -+\n"
-    #   s << "| #{board[6]} | #{board[7]} | #{board[8]} |"
-    #   s << "\n+- - - - - -+\n"
-    # end
+    def to_s
+      s = "\n+- - - - - -+\n"
+      s << "| #{cells[0]} | #{cells[1]} | #{cells[2]} |"
+      s << "\n+- - - - - -+\n"
+      s << "| #{cells[3]} | #{cells[4]} | #{cells[5]} |"
+      s << "\n+- - - - - -+\n"
+      s << "| #{cells[6]} | #{cells[7]} | #{cells[8]} |"
+      s << "\n+- - - - - -+\n"
+    end
 
     def dup
       new_board = Board.new(size)
@@ -64,7 +64,7 @@ module TicTacToe
     end
 
     def empty?
-      cells.all? {|cell| cell == nil}
+      cells.all? {|cell| cell.nil?}
     end
 
     def over?
@@ -79,11 +79,12 @@ module TicTacToe
       self.winning_solutions = [
         [1, 2, 3], [4, 5, 6], [7, 8, 9],
         [1, 4, 7], [2, 5, 8], [3, 6, 9],
-        [1, 5, 9], [3, 5, 7]]
+        [1, 5, 9], [3, 5, 7]
+      ]
     end
 
     def full?
-      cells.none? {|cell| cell == nil}
+      cells.none? {|cell| cell.nil?}
     end
   end
 end

@@ -14,13 +14,21 @@ module TicTacToe
     end
 
     def get_valid_move(board)
-      move = get_move
-      if valid_move?(move, board)
-        move
-      else
-        display_error_message(move)
-        get_valid_move(board)
+      while true
+        move = get_move
+        if valid_move?(move, board)
+          return move
+        else
+          display_error_message(move)
+        end
       end
+    end
+
+    def get_valid_move(board)
+      until valid_move?(move = get_move, board)
+        display_error_message
+      end
+      move
     end
 
     def get_move
