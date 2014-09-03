@@ -9,16 +9,6 @@ module TicTacToe
       @cells = cells || Array.new(size*size) {nil}
     end
 
-    def to_s
-      s = "\n+- - - - - -+\n"
-      s << "| #{cells[0]} | #{cells[1]} | #{cells[2]} |"
-      s << "\n+- - - - - -+\n"
-      s << "| #{cells[3]} | #{cells[4]} | #{cells[5]} |"
-      s << "\n+- - - - - -+\n"
-      s << "| #{cells[6]} | #{cells[7]} | #{cells[8]} |"
-      s << "\n+- - - - - -+\n"
-    end
-
     def dup
       new_board = Board.new(size)
       cells.each_with_index {|cell, index| new_board.set_cell(index + 1, cells[index])}

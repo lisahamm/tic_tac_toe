@@ -1,5 +1,6 @@
 module TicTacToe
   class Game
+    attr_accessor :board
 
     def initialize(board, player1, player2)
       @board = board
@@ -37,13 +38,9 @@ module TicTacToe
       board.tie_game?
     end
 
-    def to_s
-      board.to_s
-    end
-
     private
 
-    attr_accessor :board, :players, :current_player
+    attr_accessor :players, :current_player
 
     def take_turn
       current_player.take_turn(board)

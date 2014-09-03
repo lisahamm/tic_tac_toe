@@ -2,7 +2,7 @@ module TicTacToe
   class HumanPlayer < Player
 
     def take_turn(board)
-      puts board
+      puts BoardView.new(board)
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end
@@ -22,13 +22,6 @@ module TicTacToe
           display_error_message(move)
         end
       end
-    end
-
-    def get_valid_move(board)
-      until valid_move?(move = get_move, board)
-        display_error_message
-      end
-      move
     end
 
     def get_move
