@@ -2,7 +2,7 @@ module TicTacToe
   class HumanPlayer < Player
 
     def take_turn(board)
-      puts BoardView.new(board)
+      puts BoardView.new(board).display
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end
