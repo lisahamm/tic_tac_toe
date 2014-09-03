@@ -1,8 +1,14 @@
 module TicTacToe
   class HumanPlayer < Player
+    attr_accessor :io
+
+    def initialize(mark, io)
+      @mark = mark
+      @io = io
+    end
 
     def take_turn(board)
-      puts BoardView.new(board).display
+      io.output(BoardView.new(board).display)
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end
@@ -25,12 +31,12 @@ module TicTacToe
     end
 
     def get_move
-      puts "#{self}, it's your turn. What cell would you like to mark (1-9)?"
+      io.output("#{self}, it's your turn. What cell would you like to mark (1-9)?")
       get_user_input.chomp.to_i
     end
 
     def get_user_input
-      gets
+      io.input
     end
 
     def valid_move?(cell_number, board)
@@ -43,9 +49,9 @@ module TicTacToe
 
     def display_error_message(cell_number)
       if !correct_range?(cell_number)
-        puts "The cell number you entered is not valid."
+        io.output("The cell number you entered is not valid.")
       else
-        puts "That cell has already been marked. Please select an unmarked cell."
+        io.output("That cell has already been marked. Please select an unmarked cell.")
       end
     end
   end

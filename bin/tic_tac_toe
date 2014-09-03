@@ -60,19 +60,21 @@ order_number = get_valid_number
 player1 = nil
 player2 = nil
 
+io = InputOutput.new
+
 if order_number == "1"
-  player1 = HumanPlayer.new(mark)
+  player1 = HumanPlayer.new(mark, io)
   player2 = ComputerPlayer.new(other_mark)
 elsif order_number == "2"
   player1 = ComputerPlayer.new(other_mark)
-  player2 = HumanPlayer.new(mark)
+  player2 = HumanPlayer.new(mark, io)
 end
 
-game = Game.new(Board.new, player1, player2)
+game = Game.new(Board.new, player1, player2, io)
 
 game.play
 
-puts BoardView.new(game.board).display
+io.output(BoardView.new(game.board).display)
 
 
 

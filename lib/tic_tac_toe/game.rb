@@ -1,11 +1,12 @@
 module TicTacToe
   class Game
-    attr_accessor :board
+    attr_accessor :board, :io
 
-    def initialize(board, player1, player2)
+    def initialize(board, player1, player2, io)
       @board = board
       @players = [player1, player2]
       @current_player = player1
+      @io = io
     end
 
     def play
@@ -55,11 +56,11 @@ module TicTacToe
     end
 
     def display_winning_message(winning_player)
-      puts "Game Over, we have a winner. Congratulations player #{winning_player}!"
+      io.output("Game Over, we have a winner. Congratulations player #{winning_player}!")
     end
 
     def display_tie_message
-      puts "Board is full. Tie game."
+      io.output("Board is full. Tie game.")
     end
 
     def switch_turn
