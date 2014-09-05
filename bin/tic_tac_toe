@@ -74,7 +74,7 @@ game = Game.new(Board.new, player1, player2, io)
 
 game.play
 
-io.output(BoardView.new(game.board).display)
+BoardView.new(game.board, io).display
 
 
 

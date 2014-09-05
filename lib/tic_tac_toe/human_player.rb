@@ -8,7 +8,7 @@ module TicTacToe
     end
 
     def take_turn(board)
-      io.output(BoardView.new(board).display)
+      BoardView.new(board, io).display
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end
