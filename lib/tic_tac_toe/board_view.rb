@@ -2,7 +2,7 @@ module TicTacToe
   class BoardView
 
     def initialize(board, io)
-      @cells = format_empty_cells(board.cells)
+      @board = board
       @io = io
     end
 
@@ -11,9 +11,10 @@ module TicTacToe
     end
 
     private
-    attr_accessor :cells, :io
+    attr_accessor :board, :cells, :io
 
     def cells_to_s
+      @cells = format_empty_cells(board.cells)
       s = "\n+- - - - - -+\n"
       s << "| #{cells[0]} | #{cells[1]} | #{cells[2]} |"
       s << "\n+- - - - - -+\n"

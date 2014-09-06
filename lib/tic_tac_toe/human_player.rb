@@ -1,14 +1,15 @@
 module TicTacToe
   class HumanPlayer < Player
-    attr_accessor :io
+    attr_accessor :io, :view
 
-    def initialize(mark, io)
+    def initialize(mark, io, view)
       @mark = mark
       @io = io
+      @view = view
     end
 
     def take_turn(board)
-      BoardView.new(board, io).display
+      view.display
       cell_number = get_valid_move(board)
       make_move(board, cell_number)
     end

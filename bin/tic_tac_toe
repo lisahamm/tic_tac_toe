@@ -67,23 +67,27 @@ other_mark = mark == 'X' ? 'O' : 'X'
 
 order_number = get_valid_number
 
+board = Board.new
+view = BoardView.new(board, io)
+
 player1 = nil
 player2 = nil
 
-
 if order_number == "1"
-  player1 = HumanPlayer.new(mark, io)
+  player1 = HumanPlayer.new(mark, io, view)
   player2 = ComputerPlayer.new(other_mark)
 elsif order_number == "2"
   player1 = ComputerPlayer.new(other_mark)
-  player2 = HumanPlayer.new(mark, io)
+  player2 = HumanPlayer.new(mark, io, view)
 end
 
-game = Game.new(Board.new, player1, player2, io)
+game = Game.new(board, player1, player2, io)
 
 game.play
 
-BoardView.new(game.board, io).display
+view.display
+
+
 
 
 
