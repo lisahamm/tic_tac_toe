@@ -4,15 +4,16 @@ module TicTacToe
   describe Game do
     let(:player1) {Player.new('X')}
     let(:player2) {Player.new('O')}
+    let(:io) {InputOutput.new}
 
-    let(:game) {Game.new(Board.new, player1, player2)}
+    let(:game) {Game.new(Board.new, player1, player2, io)}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(3, cells)
-      Game.new(board, player1, player2)
+      Game.new(board, player1, player2, io)
     end
 
     let(:won_game) do
@@ -20,7 +21,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(3, cells)
-      Game.new(board, player1, player2)
+      Game.new(board, player1, player2, io)
     end
 
     let(:tie_game) do
@@ -28,7 +29,7 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(3, cells)
-      Game.new(board, player1, player2)
+      Game.new(board, player1, player2, io)
     end
 
     describe "#in_progress?" do
