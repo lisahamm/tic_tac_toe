@@ -23,6 +23,10 @@ module TicTacToe
       cells[cell_number-1] = player_mark
     end
 
+    def remove_mark(cell_number)
+      cells[cell_number-1] = nil
+    end
+
     def empty_cell?(cell_number)
       cells[cell_number-1] == nil
     end
