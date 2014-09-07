@@ -6,15 +6,15 @@ module TicTacToe
 
     describe "#input" do
       it "can get input" do
-        allow(io).to receive(:gets) {"1"}
-        expect(io.input).to eq "1"
+        allow(io).to receive(:gets) {"some string"}
+        expect(io.input).to eq("some string")
       end
     end
 
     describe "#output" do
-      it "can output data" do
-        allow(io).to receive(:puts) {"1"}
-        expect(io.output("1")).to eq "1"
+      it "outputs to the screen" do
+        allow($stdout).to receive(:puts).with("some string")
+        io.output("some string")
       end
     end
   end
