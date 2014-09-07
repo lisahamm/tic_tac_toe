@@ -11,10 +11,10 @@ module TicTacToe
     end
 
     private
-    attr_accessor :board, :cells, :io
+    attr_accessor :board, :io
 
     def cells_to_s
-      @cells = format_empty_cells(board.cells)
+      cells = format_empty_cells(board.cells)
       s = "\n+- - - - - -+\n"
       s << "| #{cells[0]} | #{cells[1]} | #{cells[2]} |"
       s << "\n+- - - - - -+\n"
