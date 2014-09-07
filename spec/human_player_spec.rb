@@ -8,7 +8,7 @@ module TicTacToe
     let(:human_player) {HumanPlayer.new('X', io, view)}
 
     describe "#take_turn" do
-      it "places its mark in selected cell" do
+      it "places its mark in valid selected cell" do
         allow(io).to receive(:output) {}
         allow(human_player).to receive(:get_user_input) {"1"}
         human_player.take_turn(board)
