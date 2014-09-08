@@ -33,9 +33,9 @@ module TicTacToe
       opponent = opponent(player)
 
       board.empty_cells.each do |cell_number|
-        new_board = board.dup
-        new_board.set_cell(cell_number, player)
-        scores.push minimax(new_board, opponent, depth + 1)
+        board.set_cell(cell_number, player)
+        scores.push minimax(board, opponent, depth + 1)
+        board.remove_mark(cell_number)
         moves.push cell_number
       end
 
