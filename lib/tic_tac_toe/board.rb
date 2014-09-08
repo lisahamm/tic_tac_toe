@@ -9,12 +9,6 @@ module TicTacToe
       @cells = cells || Array.new(size*size) {nil}
     end
 
-    def dup
-      new_board = Board.new(size)
-      cells.each_with_index {|cell, index| new_board.set_cell(index + 1, cells[index])}
-      new_board
-    end
-
     def get_cell(cell_number)
       cells[cell_number-1]
     end

@@ -25,17 +25,6 @@ module TicTacToe
       end
     end
 
-    describe "#dup" do
-      it "creates a new copy" do
-        board.set_cell(1, 'X')
-        dup = board.dup
-        expect(dup.get_cell(1)).to eq 'X'
-        dup.set_cell(9, 'O')
-        expect(dup.get_cell(9)).to eq 'O'
-        expect(board.get_cell(9)).to be_nil
-      end
-    end
-
     describe "#empty_cell?" do
       it "is true when cell is empty" do
         expect(board.empty_cell?(1)).to eq true
