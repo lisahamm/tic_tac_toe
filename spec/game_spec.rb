@@ -12,7 +12,7 @@ module TicTacToe
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
-      board = Board.new(3, cells)
+      board = Board.new(cells: cells)
       Game.new(board, player1, player2, io)
     end
 
@@ -20,7 +20,7 @@ module TicTacToe
       cells = ['X', 'X', 'O',
                'O', 'X', 'X',
                'X', 'O', 'X']
-      board = Board.new(3, cells)
+      board = Board.new(cells: cells)
       Game.new(board, player1, player2, io)
     end
 
@@ -28,7 +28,7 @@ module TicTacToe
       cells = ['X', 'X', 'O',
                'O', 'O', 'X',
                'X', 'O', 'X']
-      board = Board.new(3, cells)
+      board = Board.new(cells: cells)
       Game.new(board, player1, player2, io)
     end
 
