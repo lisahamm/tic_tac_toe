@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Lisa Hamm"]
   spec.email         = ["lisalhamm@gmail.com"]
   spec.summary       = "Gem to run a game of tic tac toe with an unbeatable AI component"
+  spec.description   = ""
   spec.homepage      = ""
   spec.license       = "MIT"
 
