@@ -33,7 +33,7 @@ module TicTacToe
 
     def get_move
       io.output("#{self}, it's your turn. What cell would you like to mark (1-9)?")
-      get_user_input.chomp.to_i
+      get_user_input.chomp.to_i - 1
     end
 
     def get_user_input
@@ -45,7 +45,7 @@ module TicTacToe
     end
 
     def correct_range?(cell_number)
-      cell_number > 0 && cell_number < 10
+      cell_number >= 0 && cell_number < 9
     end
 
     def display_error_message(cell_number)
