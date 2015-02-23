@@ -78,10 +78,11 @@ module TicTacToe
       {size: BOARD_SIZE, cells: nil}
     end
 
+    Cell = Struct.new(:symbol, :index)
+
     def cellify(data)
       data.each_with_index.map {|symbol, index| Cell.new(symbol, index)}
     end
-
 
     def winning_solutions
       self.winning_solutions = [
