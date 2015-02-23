@@ -12,7 +12,7 @@ module TicTacToe
         allow(io).to receive(:output) {}
         allow(human_player).to receive(:get_user_input) {"1"}
         human_player.take_turn(board)
-        expect(board.get_cell(1)).to eq "X"
+        expect(board.get_cell(0)).to eq "X"
       end
     end
   end
