@@ -28,7 +28,7 @@ module TicTacToe
 
     def empty_cells
       available_cells = []
-      cells.each {|cell| available_cells << (cell.index + 1) if empty_cell?(cell.index)}
+      cells.each {|cell| available_cells << (cell.index) if empty_cell?(cell.index)}
       available_cells
     end
 

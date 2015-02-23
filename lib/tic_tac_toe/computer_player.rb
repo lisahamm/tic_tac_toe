@@ -3,7 +3,7 @@ module TicTacToe
     def take_turn(board)
       cell =
         if board.empty?
-          (1..9).to_a.sample
+          (0..8).to_a.sample
         else
           minimax(board, mark)
         end
