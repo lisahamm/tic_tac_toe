@@ -2,20 +2,20 @@ require "spec_helper"
 
 module TicTacToe
   describe Board do
-    let(:board) {Board.new(3)}
+    let(:board) {Board.new(size: 3)}
 
     let(:won_board) do
       cells = ['X', 'X', 'O',
                'O', 'X', 'X',
                'X', 'O', 'X']
-      Board.new(3, cells)
+      Board.new(size: 3, cells: cells)
     end
 
     let(:tie_board) do
       cells = ['X', 'X', 'O',
                'O', 'O', 'X',
                'X', 'O', 'X']
-      Board.new(3, cells)
+      Board.new(size: 3, cells: cells)
     end
 
     describe "cell accessors" do

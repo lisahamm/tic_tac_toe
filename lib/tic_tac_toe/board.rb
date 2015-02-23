@@ -4,38 +4,39 @@ module TicTacToe
   class Board
     attr_accessor :cells, :size
 
-    def initialize(size = BOARD_SIZE, cells=nil)
-      @size = size
-      @cells = cells || Array.new(size*size) {nil}
+    def initialize(options={})
+      options = defaults.merge(options)
+      @size = options[:size]
+      @cells = cellify(options[:cells] || Array.new(size*size) {nil})
     end
 
     def get_cell(cell_number)
-      cells[cell_number-1]
+      cells[cell_number].symbol
     end
 
     def set_cell(cell_number, player_mark)
-      cells[cell_number-1] = player_mark
+      cells[cell_number].symbol = player_mark
     end
 
     def remove_mark(cell_number)
-      cells[cell_number-1] = nil
+      cells[cell_number].symbol = nil
     end
 
     def empty_cell?(cell_number)
-      cells[cell_number-1] == nil
+      cells[cell_number].symbol == nil
     end
 
     def empty_cells
       available_cells = []
-      cells.each_with_index {|cell, index| available_cells << (index + 1) if empty_cell?(index+1)}
+      cells.each {|cell| available_cells << (cell.index + 1) if empty_cell?(cell.index)}
       available_cells
     end
 
     def get_winning_mark
       winning_solutions.each do |solution|
-        cell1 = cells[solution[0]-1]
-        cell2 = cells[solution[1]-1]
-        cell3 = cells[solution[2]-1]
+        cell1 = cells[solution[0]-1].symbol
+        cell2 = cells[solution[1]-1].symbol
+        cell3 = cells[solution[2]-1].symbol
         if cell1 == cell2 && cell1 == cell3 && cell1 != nil
           return cell1
         end
@@ -52,16 +53,35 @@ module TicTacToe
     end
 
     def empty?
-      cells.all? {|cell| cell.nil?}
+      cells.all? {|cell| cell.symbol.nil?}
     end
 
     def over?
       winner? || tie_game?
     end
 
+    def each_row
+      cells.each_slice(3) {|group| yield group}
+    end
+
+    def to_array
+      cells.map(&:symbol)
+    end
+
+    Cell = Struct.new(:symbol, :index)
+
     private
 
     attr_accessor :board, :winning_solutions
+
+    def defaults
+      {size: BOARD_SIZE, cells: nil}
+    end
+
+    def cellify(data)
+      data.each_with_index.map {|symbol, index| Cell.new(symbol, index)}
+    end
+
 
     def winning_solutions
       self.winning_solutions = [
@@ -72,7 +92,7 @@ module TicTacToe
     end
 
     def full?
-      cells.none? {|cell| cell.nil?}
+      cells.none? {|cell| cell.symbol.nil?}
     end
   end
 end
