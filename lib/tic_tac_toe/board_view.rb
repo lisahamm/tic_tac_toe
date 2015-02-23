@@ -25,7 +25,7 @@ module TicTacToe
     end
 
     def format_empty_cells(cells)
-      cells.map {|cell| cell == nil ?  ' ' : cell}
+      cells.map {|cell| cell.symbol == nil ?  ' ' : cell.symbol}
     end
   end
 end
