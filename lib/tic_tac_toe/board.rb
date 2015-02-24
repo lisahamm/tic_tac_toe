@@ -68,8 +68,6 @@ module TicTacToe
       cells.map(&:symbol)
     end
 
-    Cell = Struct.new(:symbol, :index)
-
     private
 
     attr_accessor :board, :winning_solutions
